@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TFT Champion Picking Generator</title>
+  </head>
+  <body>
+	<h1>{{ title }}</h1>
+	<p>{{ tier_message }}</p>
+	<!-- <p>{{ image }}</p> -->
+	<form action="/" method="POST" enctype="multipart/form-data">
+		<div>
+			<img src="{{ image }}">
+		</div>
+		<div>
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" placeholder="名前">	
+		</div>
+		<div>
+		<label for="image">Image:</label>
+		<select name="select_image">
+			<option value="null" disabled selected>選択して下さい</option>
+			<option value="ahri">ahri</option>
+			<option value="akali">akali</option>
+			<option value="alistar">alistar</option>
+            <option value="amumu">amumu</option>
+			<option value="anivia">anivia</option>
+			<option value="annie">annie</option>
+			<option value="ashe">ashe</option>
+            <option value="azir">azir</option>
+            <option value="urgot">urgot</option>
+		</select>
+		</div>
+		<label for="tier">Tier:</label>
+        <select name="sel">
+			<option value="null" disabled selected>選択して下さい</option>
+			<option value="1">Tier1</option>
+			<option value="2">Tier2</option>
+			<option value="3">Tier3</option>
+            <option value="4">Tier4</option>
+            <option value="5">Tier5</option>
+		</select>
+		<div>
+			<label for="attribute1">Origin:</label>
+			<input type="text" id="attribute1" name="attribute1" placeholder="シナジー１"">
+			<select name="attribute1_sel">
+				<option value="null" disabled selected>選択して下さい</option>
+				<option value="astro">astro</option>
+				<option value="battlecast">battlecast</option>
+				<option value="blademaster">blademaster</option>
+				<option value="blaster">blaster</option>
+				<option value="brawler">brawler</option>
+				<option value="celestial">celestial</option>
+				<option value="chrono">chrono</option>
+				<option value="demolitionist">demolitionist</option>
+				<option value="infiltrator">infiltrator</option>
+				<option value="manareaver">manareaver</option>
+				<option value="mechpilot">mechpilot</option>
+				<option value="mercenary">mercenary</option>
+				<option value="mystic">mystic</option>
+				<option value="paragon">paragon</option>
+				<option value="protector">protector</option>
+				<option value="sorcerer">sorcerer</option>
+				<option value="spacepirate">spacepirate</option>
+				<option value="starguardian">starguardian</option>
+				<option value="starship">starship</option>
+				<option value="vanguard">vanguard</option>
+			</select>
+		</div>
+		<div>
+			<label for="attribute2">Class:</label>
+			<input type="text" id="attribute2" name="attribute2" placeholder="シナジー２">
+			<select name="attribute2_sel">
+				<option value="null" disabled selected>選択して下さい</option>
+				<option value="astro">astro</option>
+				<option value="battlecast">battlecast</option>
+				<option value="blademaster">blademaster</option>
+				<option value="blaster">blaster</option>
+				<option value="brawler">brawler</option>
+				<option value="celestial">celestial</option>
+				<option value="chrono">chrono</option>
+				<option value="demolitionist">demolitionist</option>
+				<option value="infiltrator">infiltrator</option>
+				<option value="manareaver">manareaver</option>
+				<option value="mechpilot">mechpilot</option>
+				<option value="mercenary">mercenary</option>
+				<option value="mystic">mystic</option>
+				<option value="paragon">paragon</option>
+				<option value="protector">protector</option>
+				<option value="sorcerer">sorcerer</option>
+				<option value="spacepirate">spacepirate</option>
+				<option value="starguardian">starguardian</option>
+				<option value="starship">starship</option>
+				<option value="vanguard">vanguard</option>
+			</select>
+		</div>
+        <div>
+			<input type="submit" value="作成">
+        </div>
+	</form>
+</body>
+</html>
