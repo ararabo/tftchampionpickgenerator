@@ -85,7 +85,7 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     message_tier=tier
     draw.text(position_tier, message_tier, font = font_tier , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
-    img_pil.save(IMAGES_DIR+'/'+'output'+'_'+time_s+'.png', quality=95)
+    img_pil.save(IMAGES_DIR+'/'+'output'+'_'+time_s+'.jpg', quality=95)
 @app.route('/', methods=['GET'])
 def get():
 	return render_template('index.html', \
@@ -107,7 +107,7 @@ def post():
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
             message='Generated!',\
-            image= IMAGES_DIR+'/'+'output'+'_'+time_s+'.png')
+            image= IMAGES_DIR+'/'+'output'+'_'+time_s+'.jpg')
     except:
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
