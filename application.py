@@ -14,11 +14,6 @@ IMAGES_DIR = './static/images'
 FRAME_IMAGES_DIR='./static/frame_images'
 ATTRIBUTE_IMAGES_DIR='./static/attribute_images'
 SPLASH_IMAGES_DIR='./static/splash_images'
-# ファイルネーム
-SAMPLE_IMAGE='BlackfrostAnivia.jpg'
-
-ATTRIBUTE_IMAGES_NAME1='protector.png'
-ATTRIBUTE_IMAGES_NAME2='sorcerer.png'
 # フォント設置
 FONT_PATH ='./static/font/YuGothM.TTC'
 # ---------------------------------------------------------------------
@@ -95,7 +90,7 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
 def get():
 	return render_template('index.html', \
 		title = 'TFT Champion Pick Generator', \
-		message = 'Which Tier Select?', \
+		message = 'Welcome!', \
         image= IMAGES_DIR+'/'+SAMPLE_IMAGE_NAME)
 @app.route('/', methods=['POST'])
 def post():
@@ -107,8 +102,14 @@ def post():
     attribute2_icon=request.form.get('attribute2_sel')
     select_image=request.form.get('select_image')
     time_s = datetime.now().strftime('%Y%m%d%H%M%S')
-    imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,select_image)
-    return render_template('index.html', \
-		title = 'TFT Champion Picking Generator', \
-        tier_message = 'Tier{} Select'.format(tier),\
-        image= IMAGES_DIR+'/'+'output'+'_'+time_s+'.png')
+    try:
+        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,select_image)
+        return render_template('index.html', \
+            title = 'TFT Champion Pick Generator', \
+            message='Generated!',\
+            image= IMAGES_DIR+'/'+'output'+'_'+time_s+'.png')
+    except:
+        return render_template('index.html', \
+            title = 'TFT Champion Pick Generator', \
+            message = 'Please Input All Form',\
+            image= IMAGES_DIR+'/'+SAMPLE_IMAGE_NAME)
