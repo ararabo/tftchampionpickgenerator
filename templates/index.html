@@ -22,12 +22,14 @@
 		text-align: left;
 		margin: auto;
 		}
+		h1 {
+		text-align: center;
+		}
   </style>
   <body>
   	<div id="center">
 		<h1>{{ title }}</h1>
-		<p>{{ tier_message }}</p>
-		<!-- <p>{{ image }}</p> -->
+		<p>{{ message }}</p>
 		<form action="/" method="POST" enctype="multipart/form-data">
 			<div>
 				<img src="{{ image }}">
