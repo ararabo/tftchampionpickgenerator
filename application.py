@@ -84,7 +84,7 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     position_tier=(360, 250)
     message_tier=tier
     draw.text(position_tier, message_tier, font = font_tier , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
-
+    img_pil=img_pil.convert('RGB')
     img_pil.save(IMAGES_DIR+'/'+'output'+'_'+time_s+'.jpg', quality=95)
 @app.route('/', methods=['GET'])
 def get():
