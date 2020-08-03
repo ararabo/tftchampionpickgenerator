@@ -14,6 +14,7 @@ IMAGES_DIR = './static/images'
 FRAME_IMAGES_DIR='./static/frame_images'
 ATTRIBUTE_IMAGES_DIR='./static/attribute_images'
 SPLASH_IMAGES_DIR='./static/splash_images'
+UPLOAD_IMAGES_DIR='./static/upload_images'
 # フォント設置
 FONT_PATH ='./static/font/YuGothM.TTC'
 # ---------------------------------------------------------------------
@@ -38,9 +39,10 @@ def overlayimage(src, overlay, location):
     # OpenCV形式に変換
     return result_image_array
 
-def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,select_image):
+def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile):
     tier_name='tier'+str(tier)+'_frame.png'
-    img_tgt=np.array(Image.open(SPLASH_IMAGES_DIR+'/'+select_image+'.jpg').resize((400,225),Image.BILINEAR))
+    upfile.save(UPLOAD_IMAGES_DIR + '/' + 'upload.jpg')
+    img_tgt=np.array(Image.open(UPLOAD_IMAGES_DIR+'/'+'upload.jpg').resize((400,225),Image.BILINEAR))
     img_frame = np.array(Image.open(FRAME_IMAGES_DIR+'/'+tier_name))
 
     # img_tgt=cv2.resize(img_tgt,(400,225))
@@ -115,10 +117,11 @@ def post():
     attribute2=request.form.get('attribute2')
     attribute1_icon=request.form.get('attribute1_sel')
     attribute2_icon=request.form.get('attribute2_sel')
-    select_image=request.form.get('select_image')
+    # select_image=request.form.get('select_image')
+    upfile = request.files.get('upfile', None)
     time_s = datetime.now().strftime('%Y%m%d%H%M%S')
     try:
-        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,select_image)
+        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile)
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
             message='Generated!',\
