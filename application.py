@@ -1,5 +1,5 @@
-from flask import Flask,render_template, request
-
+from flask import Flask,render_template, request,url_for
+import os
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
 from datetime import datetime
@@ -86,6 +86,20 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     draw.text(position_tier, message_tier, font = font_tier , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
     img_pil=img_pil.convert('RGB')
     img_pil.save(IMAGES_DIR+'/'+'output.jpg', quality=95)
+
+@app.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(app.root_path,
+                                     endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
+
 @app.route('/', methods=['GET'])
 def get():
 	return render_template('index.html', \
