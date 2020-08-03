@@ -32,7 +32,11 @@
 		<p>{{ message }}</p>
 		<form action="/" method="POST" enctype="multipart/form-data">
 			<div>
-				<img src="{{ image }}">
+				{% if sStartFlag==True %}
+					<img src="{{ image }}">
+				{% else %}
+					<img src="{{url_for('static', filename='images/output.jpg')}}" class="img-fluid" alt="Responsive image">
+				{% endif %}
 			</div>
 			<div>
 				<label for="name">Name:</label>
