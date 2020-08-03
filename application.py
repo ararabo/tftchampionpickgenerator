@@ -118,8 +118,9 @@ def post():
     attribute1_icon=request.form.get('attribute1_sel')
     attribute2_icon=request.form.get('attribute2_sel')
     # select_image=request.form.get('select_image')
-    upfile = request.files.get('upfile', None)
+    
     time_s = datetime.now().strftime('%Y%m%d%H%M%S')
+    upfile = request.files.get('upfile', None)
     try:
         imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile)
         return render_template('index.html', \
@@ -131,5 +132,5 @@ def post():
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
             message = 'Please Input All Form',\
-            sStartFlag=False,\
+            sStartFlag=True,\
             image= IMAGES_DIR+'/'+SAMPLE_IMAGE_NAME)
