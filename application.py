@@ -73,12 +73,12 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     draw.text(position, message, font = font , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
     font_attribute1 = ImageFont.truetype(FONT_PATH, 16)
-    position_attribute1=(55, 190)
+    position_attribute1=(55, 150)
     message_attribute1=attribute1
     draw.text(position_attribute1, message_attribute1, font = font_attribute1 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
     font_attribute2 = ImageFont.truetype(FONT_PATH, 16)
-    position_attribute2=(55, 150)
+    position_attribute2=(55, 190)
     message_attribute2=attribute2
     draw.text(position_attribute2, message_attribute2, font = font_attribute2 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
