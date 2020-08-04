@@ -42,7 +42,7 @@ def overlayimage(src, overlay, location):
 def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile):
     tier_name='tier'+str(tier)+'_frame.png'
     upfile.save(UPLOAD_IMAGES_DIR + '/' + 'upload.jpg')
-    img_tgt=np.array(Image.open(UPLOAD_IMAGES_DIR+'/'+'upload.jpg').resize((400,225),Image.BILINEAR))
+    img_tgt=np.array(Image.open(UPLOAD_IMAGES_DIR+'/'+'upload.jpg').convert('RGB').resize((400,225),Image.BILINEAR))
     img_frame = np.array(Image.open(FRAME_IMAGES_DIR+'/'+tier_name))
 
     # img_tgt=cv2.resize(img_tgt,(400,225))
