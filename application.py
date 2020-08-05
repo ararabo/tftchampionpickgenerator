@@ -69,7 +69,7 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     else:
         b,g,r,a = 0,0,0,0 #B(青)・G(緑)・R(赤)・A(透明度)：白
     position =  (15, 245)# テキスト表示位置
-    font_name = ImageFont.truetype(FONT_M_PATH, 16)
+    font_name = ImageFont.truetype(FONT_M_PATH, 24)
     draw.text(position, message, font = font_name , fill = (255,255,255,0) ) # drawにテキストを記載 fill:色 BGRA
 
     font_attribute1 = ImageFont.truetype(FONT_M_PATH, 16)
