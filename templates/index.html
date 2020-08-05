@@ -2,8 +2,11 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+	<!-- #css読込 -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>TFT Champion Pick Generator</title>
+	<!-- #favicon読込 -->
 	<link rel="apple-touch-icon" sizes="180x180" href="./static/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="./static/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="./static/favicon/favicon-16x16.png">
@@ -28,12 +31,12 @@
   </style>
   <body>
   	<div id="center">
-		<h1>{{ title }}</h1>
-		<p>{{ message }}</p>
+		<h1 align="center">{{ title }}</h1>
+		<p align="center">{{ message }}</p>
 		<form action="/" method="POST" enctype="multipart/form-data">
-			<div>
+			<div align="center">
 				{% if sStartFlag==True %}
-					<img src="{{ image }}">
+					<img src="{{ image }}" class="img-fluid">
 				{% else %}
 					<img src="{{url_for('static', filename='images/output.jpg')}}" class="img-fluid" alt="Responsive image">
 				{% endif %}
@@ -45,18 +48,6 @@
 			<div>
 			<label for="image">Image(jpg,png,gif):</label>
 			<input type=file name=upfile>
-			<!-- <select name="select_image">
-				<option value="null" disabled selected>選択して下さい</option>
-				<option value="ahri">ahri</option>
-				<option value="akali">akali</option>
-				<option value="alistar">alistar</option>
-				<option value="amumu">amumu</option>
-				<option value="anivia">anivia</option>
-				<option value="annie">annie</option>
-				<option value="ashe">ashe</option>
-				<option value="azir">azir</option>
-				<option value="urgot">urgot</option>
-			</select> -->
 			</div>
 			<label for="tier">Tier:</label>
 			<select name="sel">
