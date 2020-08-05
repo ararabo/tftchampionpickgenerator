@@ -16,7 +16,8 @@ ATTRIBUTE_IMAGES_DIR='./static/attribute_images'
 SPLASH_IMAGES_DIR='./static/splash_images'
 UPLOAD_IMAGES_DIR='./static/upload_images'
 # フォント設置
-FONT_PATH ='./static/font/YuGothM.TTC'
+FONT_M_PATH ='./static/font/YuGothM.TTC'
+FONT_B_PATH ='./static/font/YuGothB.TTC'
 # ---------------------------------------------------------------------
 # 画像のオーバーレイ
 # ---------------------------------------------------------------------
@@ -39,13 +40,11 @@ def overlayimage(src, overlay, location):
     # OpenCV形式に変換
     return result_image_array
 
-def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile):
+def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color):
     tier_name='tier'+str(tier)+'_frame.png'
     upfile.save(UPLOAD_IMAGES_DIR + '/' + 'upload.jpg')
     img_tgt=np.array(Image.open(UPLOAD_IMAGES_DIR+'/'+'upload.jpg').convert('RGB').resize((400,225),Image.BILINEAR))
     img_frame = np.array(Image.open(FRAME_IMAGES_DIR+'/'+tier_name))
-
-    # img_tgt=cv2.resize(img_tgt,(400,225))
     x_offset=0
     y_offset=0
     new_img=np.zeros((img_frame.shape[0], img_frame.shape[1], 3), np.uint8)
@@ -59,33 +58,34 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     new_img = overlayimage(new_img, img_attribute1, (15, 180))
 
     img_attribute2 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute2_icon+'.png').resize((37,37),Image.BILINEAR))
-    # img_attribute1=cv2.imread(ATTRIBUTE_IMAGES_DIR+'/'+ATTRIBUTE_IMAGES_NAME1,cv2.IMREAD_UNCHANGED)
-    # img_attribute1=np.resize(img_attribute1,(int(img_attribute1.shape[0]/2.5),int(img_attribute1.shape[1]/2.5)))
     new_img = overlayimage(new_img, img_attribute2, (15, 140))
 
     img_pil = Image.fromarray(new_img)
     draw = ImageDraw.Draw(img_pil) # drawインスタンスを生成
     message =name
     # 表示する色
-    b,g,r,a = 255,255,255,0 #B(青)・G(緑)・R(赤)・A(透明度)
-    font = ImageFont.truetype(FONT_PATH, 24)
+    if(string_color==None):
+        b,g,r,a = 255,255,255,0 #B(青)・G(緑)・R(赤)・A(透明度)：黒
+    else:
+        b,g,r,a = 0,0,0,0 #B(青)・G(緑)・R(赤)・A(透明度)：白
     position =  (15, 245)# テキスト表示位置
-    draw.text(position, message, font = font , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
+    font_name = ImageFont.truetype(FONT_M_PATH, 16)
+    draw.text(position, message, font = font_name , fill = (255,255,255,0) ) # drawにテキストを記載 fill:色 BGRA
 
-    font_attribute1 = ImageFont.truetype(FONT_PATH, 16)
+    font_attribute1 = ImageFont.truetype(FONT_M_PATH, 16)
     position_attribute1=(55, 150)
     message_attribute1=attribute1
     draw.text(position_attribute1, message_attribute1, font = font_attribute1 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
-    font_attribute2 = ImageFont.truetype(FONT_PATH, 16)
+    font_attribute2 = ImageFont.truetype(FONT_M_PATH, 16)
     position_attribute2=(55, 190)
     message_attribute2=attribute2
     draw.text(position_attribute2, message_attribute2, font = font_attribute2 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
-    font_tier = ImageFont.truetype(FONT_PATH, 24)
+    font_tier = ImageFont.truetype(FONT_M_PATH, 24)
     position_tier=(360, 250)
     message_tier=tier
-    draw.text(position_tier, message_tier, font = font_tier , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
+    draw.text(position_tier, message_tier, font = font_tier , fill = (255,255,255,0) ) # drawにテキストを記載 fill:色 BGRA
     img_pil=img_pil.convert('RGB')
     img_pil.save(IMAGES_DIR+'/'+'output.jpg', quality=95)
 
@@ -117,12 +117,13 @@ def post():
     attribute2=request.form.get('attribute2')
     attribute1_icon=request.form.get('attribute1_sel')
     attribute2_icon=request.form.get('attribute2_sel')
+    string_color=request.form.get('string_color')
     # select_image=request.form.get('select_image')
     
     time_s = datetime.now().strftime('%Y%m%d%H%M%S')
     upfile = request.files.get('upfile', None)
     try:
-        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile)
+        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color)
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
             message='Generated!',\
