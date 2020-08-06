@@ -55,10 +55,10 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     
 
     img_attribute1 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute1_icon+'.png').resize((37,37),Image.BILINEAR))
-    new_img = overlayimage(new_img, img_attribute1, (15, 180))
+    new_img = overlayimage(new_img, img_attribute1, (15, 140))
 
     img_attribute2 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute2_icon+'.png').resize((37,37),Image.BILINEAR))
-    new_img = overlayimage(new_img, img_attribute2, (15, 140))
+    new_img = overlayimage(new_img, img_attribute2, (15, 180))
 
     img_pil = Image.fromarray(new_img)
     draw = ImageDraw.Draw(img_pil) # drawインスタンスを生成
