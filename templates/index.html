@@ -14,6 +14,17 @@
 	<link rel="mask-icon" href="./static/favicon/safari-pinned-tab.svg" color="#5bbad5">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
+	<meta http-equiv="content-script-type" content="text/javascript">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+		<meta property="og:url" content="https://tftchampionpickgenerator.azurewebsites.net/">
+		<meta name="twitter:image" content="{{url_for('static', filename='images/output.jpg')}}">
+	<script src="./static/js/jquery-3.5.1.min.js"></script>
+	<script src="./static/js/garlic.js"></script>
+	<script>
+		$(function(){
+		$("form").garlic();
+		});
+	</script>
 	<SCRIPT language="JavaScript">
 		img0=new Image()
 		img0.src="./static/attribute_images/astro.png"
@@ -137,7 +148,7 @@
   	<div id="center">
 		<h1 align="center">{{ title }}</h1>
 		<p align="center">{{ message }}</p>
-		<form action="/" method="POST" enctype="multipart/form-data">
+		<form action="/" data-persist=”garlic” method="POST" enctype="multipart/form-data">
 			<div align="center">
 				{% if sStartFlag==True %}
 					<img src="{{ image }}" class="img-fluid">
