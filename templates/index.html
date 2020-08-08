@@ -145,89 +145,89 @@
 					<img src="{{url_for('static', filename='images/output.jpg')}}" class="img-fluid" alt="Responsive image">
 				{% endif %}
 			</div>
-			<div>
-				<label for="name">Name:</label>
-				<input type="text" id="name" name="name" placeholder="名前">	
-			</div>
-			<div>
-			<label for="image">Image(jpg,png,gif):</label>
-			<input type=file name=upfile>
-			</div>
-			<label for="tier">Tier:</label>
-			<select name="sel">
-				<option value="null" disabled selected>選択して下さい</option>
-				<option value="1">Tier1</option>
-				<option value="2">Tier2</option>
-				<option value="3">Tier3</option>
-				<option value="4">Tier4</option>
-				<option value="5">Tier5</option>
-			</select>
-			<div>
-				<label for="attribute1">Origin:</label>
-				<input type="text" id="attribute1" name="attribute1" placeholder="シナジー１"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp1" style="vertical-align: bottom;">
-				<select name="attribute1_sel" onchange="imgChange1(this)">
-					<option value="null" disabled selected>選択して下さい</option>
-					<option value="astro">astro</option>
-					<option value="battlecast">battlecast</option>
-					<option value="blademaster">blademaster</option>
-					<option value="blaster">blaster</option>
-					<option value="brawler">brawler</option>
-					<option value="celestial">celestial</option>
-					<option value="chrono">chrono</option>
-					<option value="cybernetic">cybernetic</option>
-					<option value="darkstar">darkstar</option>
-					<option value="demolitionist">demolitionist</option>
-					<option value="infiltrator">infiltrator</option>
-					<option value="manareaver">manareaver</option>
-					<option value="mechpilot">mechpilot</option>
-					<option value="mercenary">mercenary</option>
-					<option value="mystic">mystic</option>
-					<option value="paragon">paragon</option>
-					<option value="protector">protector</option>
-					<option value="rebel">rebel</option>
-					<option value="sniper">sniper</option>
-					<option value="sorcerer">sorcerer</option>
-					<option value="spacepirate">spacepirate</option>
-					<option value="starguardian">starguardian</option>
-					<option value="starship">starship</option>
-					<option value="vanguard">vanguard</option>
+				<div>
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" placeholder="名前">	
+				</div>
+				<div>
+				<label for="image">Image(jpg,png,gif):</label>
+				<input type=file name=upfile>
+				</div>
+				<label for="tier">Tier:</label>
+				<select name="sel">
+					<option value="null" disabled selected>Tierを選択</option>
+					<option value="1">Tier1</option>
+					<option value="2">Tier2</option>
+					<option value="3">Tier3</option>
+					<option value="4">Tier4</option>
+					<option value="5">Tier5</option>
 				</select>
-			</div>
-			<div>
-				<label for="attribute2">Class:</label>
-				<input type="text" id="attribute2" name="attribute2" placeholder="シナジー２"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp2" style="vertical-align: bottom;">
-				<select name="attribute2_sel" onchange="imgChange2(this)">
-					<option value="null" disabled selected>選択して下さい</option>
-					<option value="astro">astro</option>
-					<option value="battlecast">battlecast</option>
-					<option value="blademaster">blademaster</option>
-					<option value="blaster">blaster</option>
-					<option value="brawler">brawler</option>
-					<option value="celestial">celestial</option>
-					<option value="chrono">chrono</option>
-					<option value="cybernetic">cybernetic</option>
-					<option value="darkstar">darkstar</option>
-					<option value="demolitionist">demolitionist</option>
-					<option value="infiltrator">infiltrator</option>
-					<option value="manareaver">manareaver</option>
-					<option value="mechpilot">mechpilot</option>
-					<option value="mercenary">mercenary</option>
-					<option value="mystic">mystic</option>
-					<option value="paragon">paragon</option>
-					<option value="protector">protector</option>
-					<option value="rebel">rebel</option>
-					<option value="sniper">sniper</option>
-					<option value="sorcerer">sorcerer</option>
-					<option value="spacepirate">spacepirate</option>
-					<option value="starguardian">starguardian</option>
-					<option value="starship">starship</option>
-					<option value="vanguard">vanguard</option>
-				</select>
-			</div>
-			<div>
-				<label></label><input type="checkbox" name="string_color" value="1">黒文字にする</label>
-				<input type="submit" value="作成">
-			</div>
+				<div>
+					<label for="attribute1">Synergy1:</label>
+					<input type="text" id="attribute1" name="attribute1" placeholder="シナジー１入力"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp1" style="vertical-align: bottom;">
+					<select name="attribute1_sel" onchange="imgChange1(this)">
+						<option value="null" disabled selected>シナジー１選択</option>
+						<option value="astro">astro</option>
+						<option value="battlecast">battlecast</option>
+						<option value="blademaster">blademaster</option>
+						<option value="blaster">blaster</option>
+						<option value="brawler">brawler</option>
+						<option value="celestial">celestial</option>
+						<option value="chrono">chrono</option>
+						<option value="cybernetic">cybernetic</option>
+						<option value="darkstar">darkstar</option>
+						<option value="demolitionist">demolitionist</option>
+						<option value="infiltrator">infiltrator</option>
+						<option value="manareaver">manareaver</option>
+						<option value="mechpilot">mechpilot</option>
+						<option value="mercenary">mercenary</option>
+						<option value="mystic">mystic</option>
+						<option value="paragon">paragon</option>
+						<option value="protector">protector</option>
+						<option value="rebel">rebel</option>
+						<option value="sniper">sniper</option>
+						<option value="sorcerer">sorcerer</option>
+						<option value="spacepirate">spacepirate</option>
+						<option value="starguardian">starguardian</option>
+						<option value="starship">starship</option>
+						<option value="vanguard">vanguard</option>
+					</select>
+				</div>
+				<div>
+					<label for="attribute2">Synergy2:</label>
+					<input type="text" id="attribute2" name="attribute2" placeholder="シナジー２入力"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp2" style="vertical-align: bottom;">
+					<select name="attribute2_sel" onchange="imgChange2(this)">
+						<option value="null" disabled selected>シナジー２選択</option>
+						<option value="astro">astro</option>
+						<option value="battlecast">battlecast</option>
+						<option value="blademaster">blademaster</option>
+						<option value="blaster">blaster</option>
+						<option value="brawler">brawler</option>
+						<option value="celestial">celestial</option>
+						<option value="chrono">chrono</option>
+						<option value="cybernetic">cybernetic</option>
+						<option value="darkstar">darkstar</option>
+						<option value="demolitionist">demolitionist</option>
+						<option value="infiltrator">infiltrator</option>
+						<option value="manareaver">manareaver</option>
+						<option value="mechpilot">mechpilot</option>
+						<option value="mercenary">mercenary</option>
+						<option value="mystic">mystic</option>
+						<option value="paragon">paragon</option>
+						<option value="protector">protector</option>
+						<option value="rebel">rebel</option>
+						<option value="sniper">sniper</option>
+						<option value="sorcerer">sorcerer</option>
+						<option value="spacepirate">spacepirate</option>
+						<option value="starguardian">starguardian</option>
+						<option value="starship">starship</option>
+						<option value="vanguard">vanguard</option>
+					</select>
+				</div>
+				<div>
+					<label><input type="checkbox" name="string_color" value="1">黒文字にする</label>
+					<input type="submit" value="作成">
+				</div>
 		</form>
 		<div>
 			<footer>
