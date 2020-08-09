@@ -153,7 +153,7 @@
   <body>
   	<div id="center">
 		<h1 align="center">{{ title }}</h1>
-		<p align="center">{{ message | safe }}</p>
+		<p align="center">{{ message }}</p>
 		<form action="/" data-persist=”garlic” method="POST" enctype="multipart/form-data">
 			<div align="center">
 				{% if sStartFlag==True %}
@@ -168,7 +168,7 @@
 				</div>
 				<div>
 				<label for="image">Image(jpg,png,gif):</label>
-				<input type=file name=upfile>
+				<input type=file name=upfile accept=".jpg, .jpeg, .png, .gif">
 				</div>
 				<label for="tier">Tier:</label>
 				<select name="sel">
@@ -183,7 +183,7 @@
 					<label for="attribute1">Synergy1:</label>
 					<input type="text" id="attribute1" name="attribute1" placeholder="Enter Synergy1"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp1" style="vertical-align: bottom;">
 					<select name="attribute1_sel" onchange="imgChange1(this)">
-						<option value="null" disabled selected>Set Synergy1 icon</option>
+						<option value="null" style="display:none;">Set Synergy1 icon</option>
 						<option value="astro">astro</option>
 						<option value="battlecast">battlecast</option>
 						<option value="blademaster">blademaster</option>
@@ -214,7 +214,7 @@
 					<label for="attribute2">Synergy2:</label>
 					<input type="text" id="attribute2" name="attribute2" placeholder="Enter Synergy2"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp2" style="vertical-align: bottom;">
 					<select name="attribute2_sel" onchange="imgChange2(this)">
-						<option value="null" disabled selected>Set Synergy2 icon</option>
+						<option value="null" style="display:none;">Set Synergy2 icon</option>
 						<option value="astro">astro</option>
 						<option value="battlecast">battlecast</option>
 						<option value="blademaster">blademaster</option>
