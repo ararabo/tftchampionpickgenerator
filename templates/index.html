@@ -20,7 +20,7 @@
 	<meta name="twitter:site" content="@ararabo" >
 	<meta property="og:url" content="https://tftchampionpickgenerator.azurewebsites.net/" >
 	<meta property="og:title" content="TFT Champion Pick Generator" >
-	<meta property="og:description" content="TFTのチャンピオンピック画像生成サイト" >
+	<meta property="og:description" content="TFT's Champion Pick Image Generation Site" >
 	<!-- <meta property="og:image" content="https://tftchampionpickgenerator.azurewebsites.net/static/images/sample_image2.png"> -->
 	<meta property="og:image" content="https://tftchampionpickgenerator.azurewebsites.net/static/images/sample_image2_small.png">
 	<!-- <meta property="og:image" content="{{url_for('static',_external=True,filename='images/output.jpg')}}"> -->
@@ -153,7 +153,7 @@
   <body>
   	<div id="center">
 		<h1 align="center">{{ title }}</h1>
-		<p align="center">{{ message }}</p>
+		<p align="center">{{ message | safe }}</p>
 		<form action="/" data-persist=”garlic” method="POST" enctype="multipart/form-data">
 			<div align="center">
 				{% if sStartFlag==True %}
@@ -164,7 +164,7 @@
 			</div>
 				<div>
 					<label for="name">Name:</label>
-					<input type="text" id="name" name="name" placeholder="名前">	
+					<input type="text" id="name" name="name" placeholder="Name">	
 				</div>
 				<div>
 				<label for="image">Image(jpg,png,gif):</label>
@@ -172,7 +172,7 @@
 				</div>
 				<label for="tier">Tier:</label>
 				<select name="sel">
-					<option value="null" disabled selected>Tierを選択</option>
+					<option value="null" disabled selected>Select Tier</option>
 					<option value="1">Tier1</option>
 					<option value="2">Tier2</option>
 					<option value="3">Tier3</option>
@@ -181,9 +181,9 @@
 				</select>
 				<div>
 					<label for="attribute1">Synergy1:</label>
-					<input type="text" id="attribute1" name="attribute1" placeholder="シナジー１入力"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp1" style="vertical-align: bottom;">
+					<input type="text" id="attribute1" name="attribute1" placeholder="Enter Synergy1"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp1" style="vertical-align: bottom;">
 					<select name="attribute1_sel" onchange="imgChange1(this)">
-						<option value="null" disabled selected>シナジー１選択</option>
+						<option value="null" disabled selected>Set Synergy1 icon</option>
 						<option value="astro">astro</option>
 						<option value="battlecast">battlecast</option>
 						<option value="blademaster">blademaster</option>
@@ -212,9 +212,9 @@
 				</div>
 				<div>
 					<label for="attribute2">Synergy2:</label>
-					<input type="text" id="attribute2" name="attribute2" placeholder="シナジー２入力"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp2" style="vertical-align: bottom;">
+					<input type="text" id="attribute2" name="attribute2" placeholder="Enter Synergy2"><IMG src="./static/attribute_images/sample.png" width="25" height="25" name="imgsmp2" style="vertical-align: bottom;">
 					<select name="attribute2_sel" onchange="imgChange2(this)">
-						<option value="null" disabled selected>シナジー２選択</option>
+						<option value="null" disabled selected>Set Synergy2 icon</option>
 						<option value="astro">astro</option>
 						<option value="battlecast">battlecast</option>
 						<option value="blademaster">blademaster</option>
@@ -242,8 +242,8 @@
 					</select>
 				</div>
 				<div>
-					<label><input type="checkbox" name="string_color" value="1">黒文字にする</label>
-					<input type="submit" value="作成">
+					<label><input type="checkbox" name="string_color" value="1">Change to black text(Synergy)</label>
+					<input type="submit" value="Create!">
 				</div>
 		</form>
 		<a href="https://twitter.com/intent/tweet?hashtags=TFTChampionPickGenerator&url=https://tftchampionpickgenerator.azurewebsites.net/" class="twitter-hashtag-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -106,7 +106,7 @@ def dated_url_for(endpoint, **values):
 def get():
 	return render_template('index.html', \
 		title = 'TFT Champion Pick Generator', \
-		message = 'Welcome!', \
+		message = 'Welcome!<br>Enter name, synergy,<br>upload image file <br>and select tier and synergy icons', \
         sStartFlag=True,\
         image= IMAGES_DIR+'/'+SAMPLE_IMAGE_NAME)
 @app.route('/', methods=['POST'])
