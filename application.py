@@ -12,7 +12,7 @@ app = Flask(__name__)
 SAMPLE_IMAGE_NAME='sample_image.png'
 IMAGES_DIR = './static/images'
 FRAME_IMAGES_DIR='./static/frame_images'
-ATTRIBUTE_IMAGES_DIR='./static/attribute_images'
+ATTRIBUTE_IMAGES_DIR='./static/attribute_images/set4'
 SPLASH_IMAGES_DIR='./static/splash_images'
 UPLOAD_IMAGES_DIR='./static/upload_images'
 # フォント設置
