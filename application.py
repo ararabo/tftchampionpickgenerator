@@ -61,13 +61,13 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     new_img = overlayimage(new_img, img_attribute2, (25, 180))
 
     if(int(attribute_chosen)==1):
-        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png'))
-        new_img = overlayimage(new_img, img_chosen, (0, 145))
+        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png').resize((25,22),Image.BILINEAR))
+        new_img = overlayimage(new_img, img_chosen, (10, 150))
     elif(int(attribute_chosen)==2):
-        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png'))
-        new_img = overlayimage(new_img, img_chosen, (0, 185))
+        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png').resize((25,22),Image.BILINEAR))
+        new_img = overlayimage(new_img, img_chosen, (10, 190))
     if(int(attribute_chosen)!=0):
-        img_chosen_simbol=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_simbol.png'))
+        img_chosen_simbol=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_simbol.png').resize((48,138),Image.BILINEAR))
         new_img = overlayimage(new_img, img_chosen_simbol, (354, 0))
 
     img_pil = Image.fromarray(new_img)
