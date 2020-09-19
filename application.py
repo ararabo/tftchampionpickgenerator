@@ -40,7 +40,7 @@ def overlayimage(src, overlay, location):
     # OpenCV形式に変換
     return result_image_array
 
-def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color):
+def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color,attribute_chosen):
     tier_name='tier'+str(tier)+'_frame.png'
     upfile.save(UPLOAD_IMAGES_DIR + '/' + 'upload.jpg')
     img_tgt=np.array(Image.open(UPLOAD_IMAGES_DIR+'/'+'upload.jpg').convert('RGB').resize((400,225),Image.BILINEAR))
@@ -54,11 +54,21 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
     new_img = overlayimage(new_img, img_frame, (0, 0))
     
 
-    img_attribute1 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute1_icon+'.png').resize((37,37),Image.BILINEAR))
-    new_img = overlayimage(new_img, img_attribute1, (15, 140))
+    img_attribute1 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute1_icon+'.png').resize((35,41),Image.BILINEAR))
+    new_img = overlayimage(new_img, img_attribute1, (25, 140))
 
-    img_attribute2 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute2_icon+'.png').resize((37,37),Image.BILINEAR))
-    new_img = overlayimage(new_img, img_attribute2, (15, 180))
+    img_attribute2 = np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/'+attribute2_icon+'.png').resize((35,41),Image.BILINEAR))
+    new_img = overlayimage(new_img, img_attribute2, (25, 180))
+
+    if(int(attribute_chosen)==1):
+        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png'))
+        new_img = overlayimage(new_img, img_chosen, (0, 145))
+    elif(int(attribute_chosen)==2):
+        img_chosen=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_attribution.png'))
+        new_img = overlayimage(new_img, img_chosen, (0, 185))
+    if(int(attribute_chosen)!=0):
+        img_chosen_simbol=np.array(Image.open(ATTRIBUTE_IMAGES_DIR+'/chosen_simbol.png'))
+        new_img = overlayimage(new_img, img_chosen_simbol, (354, 0))
 
     img_pil = Image.fromarray(new_img)
     draw = ImageDraw.Draw(img_pil) # drawインスタンスを生成
@@ -68,17 +78,17 @@ def imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2
         b,g,r,a = 255,255,255,0 #B(青)・G(緑)・R(赤)・A(透明度)：黒
     else:
         b,g,r,a = 0,0,0,0 #B(青)・G(緑)・R(赤)・A(透明度)：白
-    position =  (15, 245)# テキスト表示位置
+    position =  (20, 250)# テキスト表示位置
     font_name = ImageFont.truetype(FONT_M_PATH, 24)
     draw.text(position, message, font = font_name , fill = (255,255,255,0) ) # drawにテキストを記載 fill:色 BGRA
 
-    font_attribute1 = ImageFont.truetype(FONT_M_PATH, 16)
-    position_attribute1=(55, 150)
+    font_attribute1 = ImageFont.truetype(FONT_M_PATH, 20)
+    position_attribute1=(65, 150)
     message_attribute1=attribute1
     draw.text(position_attribute1, message_attribute1, font = font_attribute1 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
-    font_attribute2 = ImageFont.truetype(FONT_M_PATH, 16)
-    position_attribute2=(55, 190)
+    font_attribute2 = ImageFont.truetype(FONT_M_PATH, 20)
+    position_attribute2=(65, 190)
     message_attribute2=attribute2
     draw.text(position_attribute2, message_attribute2, font = font_attribute2 , fill = (b, g, r, a) ) # drawにテキストを記載 fill:色 BGRA
 
@@ -117,13 +127,14 @@ def post():
     attribute2=request.form.get('attribute2')
     attribute1_icon=request.form.get('attribute1_sel')
     attribute2_icon=request.form.get('attribute2_sel')
+    attribute_chosen=request.form.get('attribute_chosen')
     string_color=request.form.get('string_color')
     # select_image=request.form.get('select_image')
     
     time_s = datetime.now().strftime('%Y%m%d%H%M%S')
     upfile = request.files.get('upfile', None)
     try:
-        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color)
+        imagemaker(name,tier,time_s,attribute1,attribute2,attribute1_icon,attribute2_icon,upfile,string_color,attribute_chosen)
         return render_template('index.html', \
             title = 'TFT Champion Pick Generator', \
             message='Generated!',\
