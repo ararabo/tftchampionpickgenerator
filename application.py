@@ -146,3 +146,55 @@ def post():
             message = 'Please Input All Form',\
             sStartFlag=True,\
             image= IMAGES_DIR+'/'+SAMPLE_IMAGE_NAME)
+import urllib
+import tweepy
+import webbrowser
+CONSUMER_KEY = "6w9nChuBvUPZhXnYO3r53N2wL"
+CONSUMER_SECRET = "QwPD2fnPGdma7ut3jyjvZSkuQL4NlxMMVf2CAnYoNxQK2DOZPX"
+CALLBACK_URL="https://tftchampionpickgenerator.azurewebsites.net/"
+def get_oauth_token(url:str)->str:
+    querys = urllib.parse.urlparse(url).query
+    querys_dict = urllib.parse.parse_qs(querys)
+    return querys_dict["oauth_token"][0]
+def get_oauth_verifier(url:str)->str:
+    querys = urllib.parse.urlparse(url).query
+    querys_dict = urllib.parse.parse_qs(querys)
+    return querys_dict["oauth_verifier"][0]
+@app.route('/tweet', methods=['POST'])
+def tweet():
+    # auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth=tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL)
+    try:
+        redirect_url = auth.get_authorization_url()
+        print ("Redirect URL:",redirect_url)
+    except tweepy.TweepError:
+        print( "Error! Failed to get request token.")
+
+
+    oauth_token = get_oauth_token(redirect_url)
+    print("oauth_token:", oauth_token)
+    auth.request_token['oauth_token'] = oauth_token
+
+    # Please confirm at twitter after login.
+    webbrowser.open(redirect_url)
+    # session['request_token'] = auth.request_token
+    # verifier = request.args.get('oauth_verifier')
+    verifier = request.GET.get('oauth_verifier')
+    auth.request_token['oauth_token_secret'] = verifier
+    
+    try:
+        auth.get_access_token(verifier)
+    except tweepy.TweepError:
+        print('Error! Failed to get access token.')
+
+    print("access token key:",auth.access_token)
+    print("access token secret:",auth.access_token_secret)
+
+    access_token=auth.access_token
+    access_token_secret=auth.access_token_secret
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+
+    #画像付きツイート
+    api.update_with_media(status = '画像付きツイートテスト', filename = 'G:/002_Programing/tft_webapp/tftchampionpickgenerator/static/upload_images/upload.png')
+    print("DONE")
